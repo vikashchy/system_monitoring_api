@@ -11,7 +11,7 @@ class SystemInfo(Resource):
         """Get System information"""
         sys_id = request.args.get('sys_id')
         db_rec = SystemInfoTable.query.filter_by(system_id=sys_id).order_by(desc('last_updated_timestamp')).first()
-        return jsonify(db_rec.json()), 200
+        return db_rec.json(), 200
 
     def post(self):
         sys_id = request.json['sys_id']
